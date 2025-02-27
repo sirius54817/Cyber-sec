@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}Helplines{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto">
+    <!-- Hero Section -->
+    <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
+            Cybersecurity Helplines
+        </h1>
+        <p class="text-xl text-gray-600 mb-8">
+            Get immediate assistance for cybersecurity incidents
+        </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div class="flex items-center space-x-4 mb-6">
+                <div class="text-red-600">
+                    <i class="fas fa-phone-alt text-3xl"></i>
+                </div>
+                <h2 class="text-2xl font-semibold">Emergency Contacts</h2>
+            </div>
+            <div class="space-y-6">
+                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <div>
+                        <h3 class="font-semibold">Cybercrime Reporting</h3>
+                        <p class="text-gray-600 text-sm">24/7 Emergency Support</p>
+                    </div>
+                    <a href="tel:1-800-123-4567" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors inline-flex items-center space-x-2">
+                        <i class="fas fa-phone"></i>
+                        <span>1-800-123-4567</span>
+                    </a>
+                </div>
+                
+                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <div>
+                        <h3 class="font-semibold">Identity Theft Hotline</h3>
+                        <p class="text-gray-600 text-sm">Immediate Assistance</p>
+                    </div>
+                    <a href="tel:1-877-438-4338" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors inline-flex items-center space-x-2">
+                        <i class="fas fa-phone"></i>
+                        <span>1-877-438-4338</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div class="flex items-center space-x-4 mb-6">
+                <div class="text-blue-600">
+                    <i class="fas fa-globe text-3xl"></i>
+                </div>
+                <h2 class="text-2xl font-semibold">Online Resources</h2>
+            </div>
+            <div class="space-y-6">
+                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <div>
+                        <h3 class="font-semibold">FBI Internet Crime</h3>
+                        <p class="text-gray-600 text-sm">Report cyber incidents</p>
+                    </div>
+                    <a href="https://www.ic3.gov" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors inline-flex items-center space-x-2">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Visit Site</span>
+                    </a>
+                </div>
+                
+                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <div>
+                        <h3 class="font-semibold">National Cyber Security</h3>
+                        <p class="text-gray-600 text-sm">Security guidelines</p>
+                    </div>
+                    <a href="https://www.cisa.gov" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors inline-flex items-center space-x-2">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Visit Site</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Resources -->
+    <div class="mt-16 grid md:grid-cols-3 gap-8">
+        <div class="bg-gray-50 p-6 rounded-xl text-center">
+            <i class="fas fa-book text-3xl text-blue-600 mb-4"></i>
+            <h3 class="font-semibold mb-2">Educational Resources</h3>
+            <p class="text-gray-600">Access free cybersecurity training materials</p>
+        </div>
+        
+        <div class="bg-gray-50 p-6 rounded-xl text-center">
+            <i class="fas fa-tools text-3xl text-blue-600 mb-4"></i>
+            <h3 class="font-semibold mb-2">Security Tools</h3>
+            <p class="text-gray-600">Recommended security software and tools</p>
+        </div>
+        
+        <div class="bg-gray-50 p-6 rounded-xl text-center">
+            <i class="fas fa-user-shield text-3xl text-blue-600 mb-4"></i>
+            <h3 class="font-semibold mb-2">Prevention Guide</h3>
+            <p class="text-gray-600">Tips to prevent cyber attacks</p>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="bg-blue-600 text-white rounded-xl p-8 text-center mt-16">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">Need Immediate Assistance?</h2>
+        <p class="mb-6">Our AI assistant is available 24/7 to help guide you</p>
+        <button onclick="toggleChat()" class="bg-white text-blue-600 px-8 py-3 rounded-lg hover:bg-blue-50 transition-colors inline-flex items-center space-x-2">
+            <i class="fas fa-comments"></i>
+            <span>Get Help Now</span>
+        </button>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Awareness - {% block title %}{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .chat-popup {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: none;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .chat-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 640px) {
+            .chat-popup {
+                width: 90%;
+                height: 70vh;
+                right: 5%;
+                bottom: 100px;
+            }
+        }
+
+        .gradient-background {
+            background: linear-gradient(120deg, #1a365d 0%, #2563eb 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="gradient-background text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-2xl font-bold flex items-center space-x-2">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>CyberSafe</span>
+                </a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="/" class="hover:text-blue-200 transition-colors">Home</a>
+                    <a href="/laws" class="hover:text-blue-200 transition-colors">Cyber Laws</a>
+                    <a href="/helplines" class="hover:text-blue-200 transition-colors">Helplines</a>
+                    <a href="/security-tools" class="hover:text-blue-200 transition-colors">Security Tools</a>
+                </div>
+                <button class="md:hidden" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden py-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="/" class="hover:text-blue-200">Home</a>
+                    <a href="/laws" class="hover:text-blue-200">Cyber Laws</a>
+                    <a href="/helplines" class="hover:text-blue-200">Helplines</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Floating Chat Button -->
+    <button onclick="toggleChat()" class="chat-button bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg">
+        <i class="fas fa-comments text-2xl"></i>
+    </button>
+
+    <!-- Chat Popup -->
+    <div id="chat-popup" class="chat-popup">
+        <div class="flex flex-col h-full">
+            <div class="gradient-background p-4 rounded-t-lg flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-robot text-white"></i>
+                    <span class="text-white font-semibold">CyberSafe Assistant</span>
+                </div>
+                <button onclick="toggleChat()" class="text-white hover:text-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4">
+                <div class="bg-blue-100 p-3 rounded-lg">
+                    <p class="text-blue-800">Hello! I'm your Cybersecurity Assistant. How can I help you stay safe online today?</p>
+                </div>
+            </div>
+            
+            <div class="p-4 border-t">
+                <div class="flex gap-2">
+                    <input type="text" id="user-input" 
+                           class="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                           placeholder="Type your message here...">
+                    <button onclick="sendMessage()" 
+                            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="gradient-background text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">CyberSafe</h3>
+                    <p class="text-blue-100">Protecting your digital life with expert guidance and support.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="text-blue-100 hover:text-white">Home</a></li>
+                        <li><a href="/laws" class="text-blue-100 hover:text-white">Cyber Laws</a></li>
+                        <li><a href="/helplines" class="text-blue-100 hover:text-white">Helplines</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact</h3>
+                    <p class="text-blue-100">Need immediate assistance?<br>Use our chat support or helpline numbers.</p>
+                </div>
+            </div>
+            <div class="text-center mt-8 pt-8 border-t border-blue-400">
+                <p>&copy; 2024 CyberSafe. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Chat functionality
+        let chatVisible = false;
+        const chatHistory = [];
+
+        function toggleChat() {
+            const popup = document.getElementById('chat-popup');
+            chatVisible = !chatVisible;
+            popup.style.display = chatVisible ? 'block' : 'none';
+        }
+
+        function sendMessage() {
+            const userInput = document.getElementById('user-input');
+            const message = userInput.value.trim();
+            if (!message) return;
+
+            addMessage(message, 'user');
+            userInput.value = '';
+
+            fetch('/get_response', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                addMessage(data.response, 'bot');
+            })
+            .catch(error => {
+                addMessage('Sorry, something went wrong. Please try again.', 'bot');
+            });
+        }
+
+        function addMessage(message, sender) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = sender === 'user' 
+                ? 'bg-gray-100 p-3 rounded-lg ml-12' 
+                : 'bg-blue-100 p-3 rounded-lg mr-12';
+            messageDiv.innerHTML = message;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Store in chat history
+            chatHistory.push({ sender, message });
+        }
+
+        // Allow sending message with Enter key
+        document.getElementById('user-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html> 

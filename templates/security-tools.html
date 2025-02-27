@@ -1,0 +1,257 @@
+{% extends "base.html" %}
+
+{% block title %}Security Tools{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto">
+    <!-- Hero Section -->
+    <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
+            Security Tools
+        </h1>
+        <p class="text-xl text-gray-600 mb-8">
+            Free tools to help you stay secure online
+        </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+        <!-- Password Strength Checker -->
+        <div class="bg-white p-8 rounded-xl shadow-lg">
+            <div class="flex items-center space-x-4 mb-6">
+                <div class="text-blue-600">
+                    <i class="fas fa-key text-3xl"></i>
+                </div>
+                <h2 class="text-2xl font-semibold">Password Strength Checker</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="relative">
+                    <input type="password" 
+                           id="password-input"
+                           class="w-full p-3 border rounded-lg pr-12"
+                           placeholder="Enter password to check">
+                    <button onclick="togglePassword()"
+                            class="absolute right-3 top-3 text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                
+                <div id="strength-meter" class="hidden">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-medium">Strength:</span>
+                        <span id="strength-text" class="text-sm font-medium"></span>
+                    </div>
+                    <div class="h-2 bg-gray-200 rounded-full">
+                        <div id="strength-bar" class="h-2 rounded-full transition-all duration-300"></div>
+                    </div>
+                    <div id="feedback-list" class="mt-4 space-y-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phishing URL Checker -->
+        <div class="bg-white p-8 rounded-xl shadow-lg">
+            <div class="flex items-center space-x-4 mb-6">
+                <div class="text-blue-600">
+                    <i class="fas fa-link text-3xl"></i>
+                </div>
+                <h2 class="text-2xl font-semibold">URL Safety Checker</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <input type="url" 
+                       id="url-input"
+                       class="w-full p-3 border rounded-lg"
+                       placeholder="Enter URL to check">
+                <button onclick="checkURL()"
+                        class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                    Check URL
+                </button>
+                <div id="url-result" class="hidden mt-4 p-4 rounded-lg"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Security Checklist -->
+    <div class="mt-12 bg-white p-8 rounded-xl shadow-lg">
+        <div class="flex items-center space-x-4 mb-6">
+            <div class="text-blue-600">
+                <i class="fas fa-clipboard-check text-3xl"></i>
+            </div>
+            <h2 class="text-2xl font-semibold">Security Checklist</h2>
+        </div>
+        
+        <div class="space-y-4">
+            <div class="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg">
+                <input type="checkbox" id="check-1" class="h-5 w-5 text-blue-600">
+                <label for="check-1" class="flex-1">Use strong, unique passwords for all accounts</label>
+                <i class="fas fa-info-circle text-blue-600 cursor-pointer" 
+                   title="Passwords should be at least 12 characters long with a mix of letters, numbers, and symbols"></i>
+            </div>
+            
+            <div class="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg">
+                <input type="checkbox" id="check-2" class="h-5 w-5 text-blue-600">
+                <label for="check-2" class="flex-1">Enable two-factor authentication where available</label>
+                <i class="fas fa-info-circle text-blue-600 cursor-pointer"
+                   title="2FA adds an extra layer of security beyond your password"></i>
+            </div>
+            
+            <div class="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg">
+                <input type="checkbox" id="check-3" class="h-5 w-5 text-blue-600">
+                <label for="check-3" class="flex-1">Keep software and systems updated</label>
+                <i class="fas fa-info-circle text-blue-600 cursor-pointer"
+                   title="Regular updates help protect against known security vulnerabilities"></i>
+            </div>
+            
+            <div class="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg">
+                <input type="checkbox" id="check-4" class="h-5 w-5 text-blue-600">
+                <label for="check-4" class="flex-1">Use a reputable antivirus software</label>
+                <i class="fas fa-info-circle text-blue-600 cursor-pointer"
+                   title="Antivirus software helps protect against malware and other threats"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="bg-blue-600 text-white rounded-xl p-8 text-center mt-16">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">Need More Security Advice?</h2>
+        <p class="mb-6">Our AI assistant can provide personalized security recommendations</p>
+        <button onclick="toggleChat()" class="bg-white text-blue-600 px-8 py-3 rounded-lg hover:bg-blue-50 transition-colors inline-flex items-center space-x-2">
+            <i class="fas fa-comments"></i>
+            <span>Get Advice</span>
+        </button>
+    </div>
+</div>
+
+<script>
+function togglePassword() {
+    const input = document.getElementById('password-input');
+    const icon = document.querySelector('.fa-eye');
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    }
+}
+
+document.getElementById('password-input').addEventListener('input', function() {
+    const password = this.value;
+    if (!password) {
+        document.getElementById('strength-meter').classList.add('hidden');
+        return;
+    }
+
+    fetch('/check-password-strength', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password: password })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const strengthMeter = document.getElementById('strength-meter');
+        const strengthBar = document.getElementById('strength-bar');
+        const strengthText = document.getElementById('strength-text');
+        const feedbackList = document.getElementById('feedback-list');
+        
+        strengthMeter.classList.remove('hidden');
+        
+        // Update strength bar
+        const barWidth = (data.score / 6) * 100;
+        strengthBar.style.width = `${barWidth}%`;
+        
+        // Update color based on strength
+        let barColor;
+        switch(data.strength) {
+            case 'Very Weak':
+                barColor = 'bg-red-500';
+                break;
+            case 'Weak':
+                barColor = 'bg-orange-500';
+                break;
+            case 'Moderate':
+                barColor = 'bg-yellow-500';
+                break;
+            case 'Strong':
+                barColor = 'bg-green-500';
+                break;
+            case 'Very Strong':
+                barColor = 'bg-green-600';
+                break;
+        }
+        
+        strengthBar.className = `h-2 rounded-full transition-all duration-300 ${barColor}`;
+        strengthText.textContent = data.strength;
+        
+        // Update feedback
+        feedbackList.innerHTML = data.feedback.map(item => `
+            <div class="flex items-center space-x-2 text-sm">
+                <i class="fas fa-${item.type === 'success' ? 'check text-green-500' : 'times text-red-500'}"></i>
+                <span>${item.message}</span>
+            </div>
+        `).join('');
+    });
+});
+
+function checkURL() {
+    const url = document.getElementById('url-input').value;
+    if (!url) return;
+
+    fetch('/check-url', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ url: url })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const resultDiv = document.getElementById('url-result');
+        resultDiv.classList.remove('hidden');
+        
+        let bgColor;
+        switch(data.risk_level) {
+            case 'Low':
+                bgColor = 'bg-green-50 text-green-800';
+                break;
+            case 'Medium':
+                bgColor = 'bg-yellow-50 text-yellow-800';
+                break;
+            case 'High':
+                bgColor = 'bg-red-50 text-red-800';
+                break;
+            default:
+                bgColor = 'bg-gray-50 text-gray-800';
+        }
+        
+        resultDiv.className = `mt-4 p-4 rounded-lg ${bgColor}`;
+        resultDiv.innerHTML = `
+            <div class="font-semibold mb-2">Risk Level: ${data.risk_level}</div>
+            <ul class="list-disc list-inside space-y-1">
+                ${data.risk_factors.map(factor => `<li>${factor}</li>`).join('')}
+            </ul>
+            <div class="mt-4 text-sm text-gray-600">
+                <p>URL scan powered by URLScan.io</p>
+                <p class="mt-1">Note: Scan results may take a few seconds to process</p>
+            </div>
+        `;
+        
+        // Add loading state
+        const button = document.querySelector('[onclick="checkURL()"]');
+        button.innerHTML = 'Checking URL...';
+        button.disabled = true;
+        
+        // Reset button after response
+        setTimeout(() => {
+            button.innerHTML = 'Check URL';
+            button.disabled = false;
+        }, 12000);  // Slightly longer than the scan wait time
+    });
+}
+</script>
+{% endblock %} 

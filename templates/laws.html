@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}Cyber Laws{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto">
+    <!-- Hero Section -->
+    <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
+            Essential Cyber Laws
+        </h1>
+        <p class="text-xl text-gray-600 mb-8">
+            Understanding the legal framework that protects your digital rights
+        </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div class="flex items-center space-x-4 mb-6">
+                <div class="text-blue-600">
+                    <i class="fas fa-gavel text-3xl"></i>
+                </div>
+                <h2 class="text-2xl font-semibold">Computer Fraud and Abuse Act (CFAA)</h2>
+            </div>
+            <p class="text-gray-600 leading-relaxed">
+                A comprehensive law that addresses computer-related fraud and unauthorized access to protected computers and networks. It provides legal protection against hacking, malware, and other cyber threats.
+            </p>
+            <ul class="mt-4 space-y-2 text-gray-600">
+                <li class="flex items-center space-x-2">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    <span>Protects against unauthorized access</span>
+                </li>
+                <li class="flex items-center space-x-2">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    <span>Covers computer fraud</span>
+                </li>
+                <li class="flex items-center space-x-2">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    <span>Federal level protection</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div class="flex items-center space-x-4 mb-6">
+                <div class="text-blue-600">
+                    <i class="fas fa-shield-alt text-3xl"></i>
+                </div>
+                <h2 class="text-2xl font-semibold">General Data Protection Regulation (GDPR)</h2>
+            </div>
+            <p class="text-gray-600 leading-relaxed">
+                European Union law on data protection and privacy, affecting organizations worldwide. Sets standards for data collection, processing, and storage.
+            </p>
+            <ul class="mt-4 space-y-2 text-gray-600">
+                <li class="flex items-center space-x-2">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    <span>Data privacy protection</span>
+                </li>
+                <li class="flex items-center space-x-2">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    <span>User consent requirements</span>
+                </li>
+                <li class="flex items-center space-x-2">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    <span>Global impact</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div class="flex items-center space-x-4 mb-6">
+                <div class="text-blue-600">
+                    <i class="fas fa-comments text-3xl"></i>
+                </div>
+                <h2 class="text-2xl font-semibold">Electronic Communications Privacy Act (ECPA)</h2>
+            </div>
+            <p class="text-gray-600 leading-relaxed">
+                Protects wire, oral, and electronic communications while in transit. Addresses privacy concerns in the digital age.
+            </p>
+            <ul class="mt-4 space-y-2 text-gray-600">
+                <li class="flex items-center space-x-2">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    <span>Communication privacy</span>
+                </li>
+                <li class="flex items-center space-x-2">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    <span>Data transmission security</span>
+                </li>
+                <li class="flex items-center space-x-2">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    <span>Digital rights protection</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div class="flex items-center space-x-4 mb-6">
+                <div class="text-blue-600">
+                    <i class="fas fa-child text-3xl"></i>
+                </div>
+                <h2 class="text-2xl font-semibold">Children's Online Privacy Protection Act (COPPA)</h2>
+            </div>
+            <p class="text-gray-600 leading-relaxed">
+                Protects the privacy of children under 13 years of age online. Sets standards for data collection and usage.
+            </p>
+            <ul class="mt-4 space-y-2 text-gray-600">
+                <li class="flex items-center space-x-2">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    <span>Child privacy protection</span>
+                </li>
+                <li class="flex items-center space-x-2">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    <span>Parental consent requirements</span>
+                </li>
+                <li class="flex items-center space-x-2">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    <span>Online safety measures</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="bg-blue-600 text-white rounded-xl p-8 text-center mt-16">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">Have Questions About Cyber Laws?</h2>
+        <p class="mb-6">Our AI assistant can help explain these laws in simple terms</p>
+        <button onclick="toggleChat()" class="bg-white text-blue-600 px-8 py-3 rounded-lg hover:bg-blue-50 transition-colors inline-flex items-center space-x-2">
+            <i class="fas fa-comments"></i>
+            <span>Ask Now</span>
+        </button>
+    </div>
+</div>
+{% endblock %} 
